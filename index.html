@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Control & Sistema de Diseño UX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border-color: #CBD5E1;
+      --primary: #1E293B;
+      --focus-blue: #2563EB;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .portal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      width: 100%;
+      max-width: 680px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .portal-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+
+    .portal-header p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* CONTAINER DOS 2 BOTÕES / CARDS */
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 2px solid var(--border-color);
+      padding: 20px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      border-color: var(--focus-blue);
+      background: #EFF6FF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+    }
+
+    .btn-info {
+      text-align: left;
+    }
+
+    .btn-info .btn-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .action-btn:hover .btn-title {
+      color: var(--focus-blue);
+    }
+
+    .btn-info .btn-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .btn-arrow {
+      font-size: 20px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      font-weight: 700;
+      margin-left: 12px;
+    }
+
+    .action-btn:hover .btn-arrow {
+      color: var(--focus-blue);
+      transform: translateX(4px);
+    }
+
+    /* FOOTER DISCRETO */
+    .portal-footer {
+      margin-top: 32px;
+      font-size: 11.5px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="portal-card">
+    <header class="portal-header">
+      <h1>🚀 Cotizadores de Viaje</h1>
+      <p>Seleccione el módulo al que desea acceder</p>
+    </header>
+
+    <div class="buttons-container">
+      <!-- BOTÓN 1: MANUAL DE DESIGN -->
+      <a href="sistema-de-diseno.html" class="action-btn">
+        <div class="btn-info">
+          <span class="btn-title">📘 Sistema de Diseño & Directrices UX</span>
+          <span class="btn-desc">Manual de especificaciones técnicas, dimensiones y checklist UX</span>
+        </div>
+        <span class="btn-arrow">→</span>
+      </a>
+
+      <!-- BOTÓN 2: CONTROL DE APLICAÇÃO -->
+      <a href="controle-aplicacao.html" class="action-btn">
+        <div class="btn-info">
+          <span class="btn-title">📊 Control de Aplicación de Diseño</span>
+          <span class="btn-desc">Panel de seguimiento de actualización de los 21 cotizadores</span>
+        </div>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+    <footer class="portal-footer">
+      Sistema de Control de Calidad UX & UI
+    </footer>
+  </main>
+
+</body>
+</html>

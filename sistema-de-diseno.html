@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Diseño & Checklist UX — Cotizadores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #475569;
+      --border-color: #CBD5E1;
+      --primary: #1E293B;
+      --accent: #269085;
+      --focus-blue: #2563EB;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding: 24px 16px;
+    }
+
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* NAVEGACIÓN POR ABAS */
+    .tab-navigation {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 10px;
+      z-index: 200;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: #F1F5F9;
+      color: var(--text-muted);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(30, 41, 59, 0.2);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* ESTILOS DEL MANUAL */
+    .container {
+      background: #FFFFFF;
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .ux-benefits-block {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .ux-benefits-block h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .ux-benefits-block p {
+      margin-bottom: 10px;
+      color: var(--text-muted);
+    }
+
+    .ux-benefits-block ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .ux-benefits-block li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .general-instructions {
+      background: #F1F5F9;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 35px;
+      font-size: 13px;
+    }
+
+    .general-instructions h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .general-instructions ul {
+      list-style-type: square;
+      margin-left: 20px;
+      color: var(--text-dark);
+    }
+
+    .general-instructions li {
+      margin-bottom: 8px;
+    }
+
+    .section-block {
+      margin-bottom: 40px;
+    }
+
+    .subsection-block {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      padding-left: 15px;
+      border-left: 3px solid var(--border-color);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-number {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 13px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .subsection-number {
+      background: #475569;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .subsection-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1E293B;
+      text-transform: uppercase;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 13px;
+      background: #FFFFFF;
+    }
+
+    .spec-table th {
+      background-color: #F1F5F9;
+      color: #1E293B;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      padding: 10px 12px;
+      text-align: left;
+      border: 1px solid var(--border-color);
+    }
+
+    .spec-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      vertical-align: middle;
+    }
+
+    .color-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    .color-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+
+    .preview-card {
+      margin-top: 14px;
+      background: #FFFFFF;
+      border: 1px dashed #94A3B8;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .preview-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748B;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .excel-grid-preview {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      white-space: nowrap;
+    }
+
+    .excel-grid-preview td, .excel-grid-preview th {
+      height: 40px;
+      padding: 0 8px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+      font-weight: 400;
+    }
+
+    .excel-grid-preview .title-cell {
+      height: 48px;
+      font-size: 20pt;
+      font-weight: 700;
+    }
+
+    /* ESTILOS DEL CHECKLIST */
+    .checklist-header {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-reset {
+      background-color: #FEE2E2;
+      color: var(--danger);
+      border: 1px solid #FCA5A5;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--danger);
+      color: #FFFFFF;
+    }
+
+    .progress-container {
+      width: 100%;
+      background-color: var(--border-color);
+      height: 10px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--success);
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .checklist-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 24px 0 12px 0;
+      color: #1E293B;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      user-select: text;
+      -webkit-user-select: text;
+      transition: background 0.15s ease;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item:hover {
+      background-color: #F8FAFC;
+    }
+
+    .item input[type="checkbox"] {
+      margin-top: 3px;
+      margin-right: 14px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--focus-blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .item-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .item.checked .item-text {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* ESTILOS DE LA 3ª ABA (PROGRESSO POR PAÍS) */
+    .country-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .stat-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-card .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .country-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #FFFFFF;
+      font-size: 13px;
+    }
+
+    .country-table th {
+      background: #F1F5F9;
+      color: #1E293B;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .country-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .status-select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      max-width: 160px;
+    }
+
+    .status-pending {
+      background-color: #FEF2F2;
+      color: #991B1B;
+      border-color: #FCA5A5;
+    }
+
+    .status-progress {
+      background-color: #FEF3C7;
+      color: #92400E;
+      border-color: #FDE68A;
+    }
+
+    .status-completed {
+      background-color: #D1FAE5;
+      color: #065F46;
+      border-color: #6EE7B7;
+    }
+
+    @media print {
+      body { background: #FFF; padding: 0; }
+      .container { box-shadow: none; padding: 0; }
+      .tab-navigation { display: none; }
+      .tab-content { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <!-- MENÚ DE NAVEGACIÓN -->
+  <div class="tab-navigation">
+    <button class="tab-btn active" onclick="switchTab('manualTab', this)">📘 Manual de Directrices UX</button>
+    <button class="tab-btn" onclick="switchTab('checklistTab', this)">✅ Checklist de Validación</button>
+    <button class="tab-btn" onclick="switchTab('progressTab', this)">📊 Progresso por País</button>
+  </div>
+
+  <!-- ABA 1: MANUAL DE DIRECTRICES UX COMPLETO -->
+  <div id="manualTab" class="tab-content active">
+    <div class="container">
+      <header>
+        <h1>Manual de Directrices de UX & Sistema de Diseño</h1>
+        <p>Especificaciones técnicas de interfaz y dimensiones para plantillas de cotización</p>
+      </header>
+
+      <!-- PROPÓSITO E IMPACTO ORGANIZACIONAL -->
+      <div class="ux-benefits-block">
+        <h3>Propósito e Impacto Organizacional</h3>
+        <p>Esta estandarización responde a la necesidad de <strong>simplificar la operativa diaria</strong> y <strong>proteger la precisión de los datos</strong> en nuestro flujo de trabajo:</p>
+        <ul>
+          <li><span>•</span> <span><strong>Claridad en los roles de los datos:</strong> Guiar visualmente dónde se requiere intervención humana (marcos de entrada) frente a lo que se calcula automáticamente, evitando la alteración accidental de fórmulas.</span></li>
+          <li><span>•</span> <span><strong>Estructura mental unificada:</strong> Al alinear la disposición visual en todas las planillas, eliminamos el tiempo de adaptación al pasar de un cotizador a otro.</span></li>
+          <li><span>•</span> <span><strong>Comunicación clara y confiable:</strong> Unificar la jerarquía tipográfica y los bloques temáticos facilita la lectura rápida e interpretación compartida entre los equipos de trabajo.</span></li>
+        </ul>
+      </div>
+
+      <!-- INSTRUCCIONES GENERALES -->
+      <div class="general-instructions">
+        <h3>Instrucciones Generales de Plantilla</h3>
+        <ul>
+          <li><strong>Tipografía (Inter):</strong> Tamaño <strong>20pt</strong> para Título y <strong>10pt</strong> para todo el cuerpo de datos.</li>
+          <li><strong>Dimensiones Estándar:</strong> Ancho de columna proporcional y alto de fila estándar de <strong>40px</strong>.</li>
+          <li><strong>Estilo de Bordes:</strong>
+            <ul>
+              <li><strong>Estándar:</strong> Línea fina (1px Sólido) en color distintivo de separación (<span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span>).</li>
+              <li>Rectángulo de borde azul (<span class="color-pill"><span class="color-swatch" style="background: #2563EB;"></span>#2563EB</span>).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1) TÍTULO -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">1</span>
+          <h2 class="section-title">Título del Programa</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Célula</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado / Izquierda. Sin bordes laterales.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel:</div>
+          <table class="excel-grid-preview">
+            <tr>
+              <td class="title-cell" style="background: #1E293B; color: #FFFFFF; text-align: center;">
+                CIRCUITO JAPÓN FASCINANTE
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2) SALIDAS DESDE ESPAÑA -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">2</span>
+          <h2 class="section-title">Salidas desde España</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Célula</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título ("Salidas desde España")</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #D97706;"></span>#D97706</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Izquierda / Negrita. <strong>Mantener título en celda única sin combinar.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Cuerpo de Información</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FEF3C7;"></span>#FEF3C7</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #783504;"></span>#783504</span></td>
+              <td>Izquierda / Negrita. Líneas divisoras finas suaves.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel:</div>
+          <table class="excel-grid-preview" style="border: none;">
+            <tr>
+              <td style="background: #D97706; color: #FFFFFF; font-weight: 700; width: 40%; border: none;">
+                Salidas desde España
+              </td>
+              <td style="border: none; background: transparent;"></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background: #FEF3C7; color: #783504; font-weight: 700; border-bottom: 1px solid #FDE68A;">
+                Salidas desde España (con noche a bordo): martes y viernes.
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background: #FEF3C7; color: #783504; font-weight: 700; border: none;">
+                Desde abril hasta septiembre: salidas desde España (con noche a bordo): y viernes.
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3) FICHA DEL CIRCUITO -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">3</span>
+          <h2 class="section-title">Ficha del Circuito</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Célula</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título ("Ficha del circuito")</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Izquierda / Negrita. <strong>Mantener título en celda única sin combinar.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Columna Izquierda (Etiquetas)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F8FAFC;"></span>#F8FAFC</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td>Izquierda / Negrita. Borde fino (<span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span>).</td>
+            </tr>
+            <tr>
+              <td><strong>Columna Derecha (Valores)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td>Izquierda / Regular. Borde fino (<span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span>).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel:</div>
+          <table class="excel-grid-preview">
+            <tr>
+              <td style="background: #1E293B; color: #FFFFFF; font-weight: 700; width: 40%; border: 1px solid #1E293B;">
+                Ficha del circuito
+              </td>
+              <td style="border: none; background: transparent;"></td>
+            </tr>
+            <tr>
+              <td style="background: #F8FAFC; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1;">Vuelos internacionales</td>
+              <td style="background: #FFFFFF; color: #1E293B; border: 1px solid #CBD5E1;">España - Delhi (DEL) - España</td>
+            </tr>
+            <tr>
+              <td style="background: #F8FAFC; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1;">Duración</td>
+              <td style="background: #FFFFFF; color: #1E293B; border: 1px solid #CBD5E1;">8 noches</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4) SELECCIÓN DE FECHAS DE SALIDA -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">4</span>
+          <h2 class="section-title">Selección de Fechas de Salida</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Célula</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título ("Seleccione la fecha de salida")</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Izquierda / Negrita. <strong>Mantener título en celda única sin combinar.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Etiquetas (Llegada prevista / Hoy...)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #EFF3F8;"></span>#EFF3F8</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td>Centrado / Negrita. Borde estándar.</td>
+            </tr>
+            <tr>
+              <td><strong>Caja de Valor Selección</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td>Centrado. <strong>Marco con borde azul (<span class="color-pill"><span class="color-swatch" style="background: #2563EB;"></span>#2563EB</span>)</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel:</div>
+          <table class="excel-grid-preview" style="border: none;">
+            <tr>
+              <td style="background: #1E293B; color: #FFFFFF; font-weight: 700; width: 50%; border: 1px solid #1E293B;">
+                Seleccione la fecha de salida
+              </td>
+              <td style="border: none; background: transparent;"></td>
+            </tr>
+            <tr>
+              <td style="background: #EFF3F8; color: #1E293B; font-weight: 700; text-align: center; border: 1px solid #CBD5E1;">
+                Llegada prevista
+              </td>
+              <td style="background: #EFF3F8; color: #1E293B; font-weight: 700; text-align: center; border: 1px solid #CBD5E1;">
+                Hoy (automático)
+              </td>
+            </tr>
+            <tr>
+              <td style="background: #FFFFFF; border: 2px solid #2563EB;"></td>
+              <td style="background: #FFFFFF; color: #1E293B; text-align: center; border: 1px solid #CBD5E1;">
+                23/07/2026
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5) PRESUPUESTADOR -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">5</span>
+          <h2 class="section-title">Presupuestador</h2>
+        </div>
+
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Columna</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Notas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Selector de Régimen (p.ej. DBL)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado. Dropdown ubicado justo encima de la columna "Tierra (EUR)".</td>
+            </tr>
+            <tr>
+              <td><strong>Línea de Categoría, Temporada, etc.</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #475569;"></span>#475569</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado / Negrita. Borde fino.</td>
+            </tr>
+            <tr>
+              <td><strong>Encabezado PVP (€)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #269085;"></span>#269085</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado / Negrita. Fondo verde.</td>
+            </tr>
+            <tr>
+              <td><strong>Encabezado PVP Mínimo (€)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #2563EB;"></span>#2563EB</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado / Negrita. Fondo azul.</td>
+            </tr>
+            <tr>
+              <td><strong>Columna del selector DBL, SGL...</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Centrado / Negrita. Destaque de celda activa.</td>
+            </tr>
+            <tr>
+              <td><strong>Texto Insertar manualmente</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #94A3B8;"></span>#94A3B8</span></td>
+              <td>Centrado / Texto de ayuda atenuado.</td>
+            </tr>
+            <tr>
+              <td><strong>Celda PVP (€)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #E6F4F1;"></span>#E6F4F1</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td>Derecha / Negrita. Fondo verde tenue.</td>
+            </tr>
+            <tr>
+              <td><strong>Celda PVP Mínimo (€)</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #EFF6FF;"></span>#EFF6FF</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #2563EB;"></span>#2563EB</span></td>
+              <td>Derecha / Negrita Azul. Fondo azul tenue.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación General en Excel:</div>
+          <table class="excel-grid-preview">
+            <tr>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="background: #1E293B; color: #FFFFFF; font-weight: 700; text-align: center; cursor: pointer;">
+                DBL &#9660;
+              </td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+              <td style="border: none;"></td>
+            </tr>
+            <tr>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Categoría</th>
+              <th colspan="2" style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Temporada</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Fecha del viaje</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Tierra (EUR)</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Suplemento (€)</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Seguro (€)</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Vuelo internacional (€)</th>
+              <th style="background: #475569; color: #FFFFFF; font-weight: 700; text-align: center;">Vuelo interno (€)</th>
+              <th style="background: #269085; color: #FFFFFF; font-weight: 700; text-align: center;">PVP (€)</th>
+              <th style="background: #2563EB; color: #FFFFFF; font-weight: 700; text-align: center;">PVP Minimo (€)</th>
+            </tr>
+            <tr>
+              <td style="background: #F1F5F9; color: #1E293B; font-weight: 700; text-align: center;">Primera</td>
+              <td style="background: #FFFFFF; text-align: center;">01/04/2026</td>
+              <td style="background: #FFFFFF; text-align: center;">30/09/2026</td>
+              <td style="background: #FFFFFF; font-size: 7.5pt; text-align: center; color: #1E293B; white-space: nowrap;">
+                La fecha del viaje no pertenece a esta temporada
+              </td>
+              <td style="background: #1E293B; color: #FFFFFF; font-weight: 700; text-align: center;">572</td>
+              <td style="background: #FFFFFF; color: #94A3B8; font-size: 8.5pt; text-align: center;">Insertar manualmente</td>
+              <td style="background: #FFFFFF; color: #94A3B8; font-size: 8.5pt; text-align: center;">Insertar manualmente</td>
+              <td style="background: #FFFFFF; text-align: right;">480</td>
+              <td style="background: #FFFFFF; text-align: right;">100</td>
+              <td style="background: #E6F4F1; color: #1E293B; font-weight: 700; text-align: right;">1404.88</td>
+              <td style="background: #EFF6FF; color: #2563EB; font-weight: 700; text-align: right;">1404.88</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 5.1 SUBSECCIÓN SEPARADA DE CATEGORÍAS -->
+        <div class="subsection-block">
+          <div class="section-header">
+            <span class="subsection-number">5.1</span>
+            <h3 class="subsection-title">Estilos por Categoría (Primera, Superior, Lujo)</h3>
+          </div>
+          
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Elemento / Categoría</th>
+                <th>Color de Fondo</th>
+                <th>Color de Texto</th>
+                <th>Estilo Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cuadro Primera</strong></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #F1F5F9;"></span>#F1F5F9</span></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+                <td>Negrita / Tono Neutro Claro</td>
+              </tr>
+              <tr>
+                <td><strong>Cuadro Superior</strong></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #E1EBE5;"></span>#E1EBE5</span></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+                <td>Negrita / Tono Verde Suave</td>
+              </tr>
+              <tr>
+                <td><strong>Cuadro Lujo</strong></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #F5EBF0;"></span>#F5EBF0</span></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #3B1E2B;"></span>#3B1E2B</span></td>
+                <td>Negrita / Paleta Vino Elegante</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="preview-card">
+            <div class="preview-label">Ejemplo Visual de Comparación de Categorías:</div>
+            <table class="excel-grid-preview">
+              <thead>
+                <tr>
+                  <th style="background: #475569; color: #FFFFFF; font-weight: 700; width: 30%;">Categoría</th>
+                  <th style="background: #475569; color: #FFFFFF; font-weight: 700; width: 70%;">Estado / Visualización en Matriz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="background: #F1F5F9; color: #1E293B; font-weight: 700; text-align: center;">Primera</td>
+                  <td style="background: #FFFFFF; color: #475569;">Fondo neutro para gama estándar.</td>
+                </tr>
+                <tr>
+                  <td style="background: #E1EBE5; color: #1E293B; font-weight: 700; text-align: center;">Superior</td>
+                  <td style="background: #FFFFFF; color: #475569;">Fondo verde suave para la gama intermedia.</td>
+                </tr>
+                <tr>
+                  <td style="background: #F5EBF0; color: #3B1E2B; font-weight: 700; text-align: center;">Lujo</td>
+                  <td style="background: #FFFFFF; color: #475569;">Fondo y texto en paleta vino para distinción premium.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5.2 SUBSECCIÓN FORMATO CONDICIONAL -->
+        <div class="subsection-block">
+          <div class="section-header">
+            <span class="subsection-number">5.2</span>
+            <h3 class="subsection-title">Formato Condicional</h3>
+          </div>
+          
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Elemento / Condición</th>
+                <th>Color de Fondo</th>
+                <th>Color de Texto</th>
+                <th>Estilo Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Celda con Alerta / Formato Condicional</strong></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #EFF6FF;"></span>#EFF6FF</span></td>
+                <td><span class="color-pill"><span class="color-swatch" style="background: #1D4ED8;"></span>#1D4ED8</span></td>
+                <td>Negrita / Azul Destacado</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="preview-card">
+            <div class="preview-label">Ejemplo Visual de Formato Condicional:</div>
+            <table class="excel-grid-preview">
+              <tbody>
+                <tr>
+                  <td style="background: #EFF6FF; color: #1D4ED8; font-weight: 700; text-align: center; width: 50%;">
+                    Aviso / Alerta condicional activa
+                  </td>
+                  <td style="background: #FFFFFF; color: #1E293B; text-align: center; width: 50%;">
+                    Estado normal
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 6) FICHA DE CONTRATO Y ENLACES -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">6</span>
+          <h2 class="section-title">Ficha de Contrato y Enlaces</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Etiqueta (Columna Izq.)</th>
+              <th>Color de Fondo (Izq.)</th>
+              <th>Color / Estilo Valor (Columna Der.)</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título ("Info")</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td>Izquierda / Negrita. <strong>Mantener título en celda única sin combinar.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Contrato</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F8FAFC;"></span>#F8FAFC</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span> / Texto Regular (Normal)</td>
+              <td>Izquierda. Bordes finos muy suaves (<span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span>). Sin borde externo derecho.</td>
+            </tr>
+            <tr>
+              <td><strong>Temporada</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F8FAFC;"></span>#F8FAFC</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span> / Texto en Negrita</td>
+              <td>Izquierda. Bordes finos muy suaves (<span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span>). Sin borde externo derecho.</td>
+            </tr>
+            <tr>
+              <td><strong>Enlaces</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F8FAFC;"></span>#F8FAFC</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #2563EB;"></span>#2563EB</span> / Azul Subrayado Negrita</td>
+              <td>Izquierda. Enlace interactivo. Bordes finos suaves. Sin borde externo derecho.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel:</div>
+          <table class="excel-grid-preview">
+            <tr>
+              <td style="background: #1E293B; color: #FFFFFF; font-weight: 700; width: 35%; border: 1px solid #1E293B;">Info</td>
+              <td style="border: none; background: transparent;"></td>
+            </tr>
+            <tr>
+              <td style="background: #F8FAFC; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1; border-left: none;">Contrato</td>
+              <td style="background: #FFFFFF; color: #1E293B; font-weight: 400; border: 1px solid #CBD5E1; border-right: none;">Festival Holi y Rio Ganges - 10/9N</td>
+            </tr>
+            <tr>
+              <td style="background: #F8FAFC; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1; border-left: none;">Temporada</td>
+              <td style="background: #FFFFFF; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1; border-right: none;">Mar/2028</td>
+            </tr>
+            <tr>
+              <td style="background: #F8FAFC; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1; border-left: none;">Enlaces</td>
+              <td style="background: #FFFFFF; color: #2563EB; font-weight: 700; text-decoration: underline; border: 1px solid #CBD5E1; border-right: none; cursor: pointer;">Tarifas</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 7) DESGLOSE -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">7</span>
+          <h2 class="section-title">Desglose</h2>
+        </div>
+        
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Fila</th>
+              <th>Alineación</th>
+              <th>Color de Fondo (Background)</th>
+              <th>Color y Estilo de Texto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Encabezado Base</strong></td>
+              <td>Centrado</td>
+              <td>
+                <strong>Primera:</strong> <span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span><br>
+                <strong>Superior:</strong> <span class="color-pill"><span class="color-swatch" style="background: #1F3124;"></span>#1F3124</span><br>
+                <strong>Lujo:</strong> <span class="color-pill"><span class="color-swatch" style="background: #3B1E2B;"></span>#3B1E2B</span>
+              </td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span>, Negrita</td>
+            </tr>
+            <tr>
+              <td><strong>Encabezado Categorías</strong></td>
+              <td>Centrado</td>
+              <td>
+                <strong>Primera:</strong> <span class="color-pill"><span class="color-swatch" style="background: #334155;"></span>#334155</span><br>
+                <strong>Superior:</strong> <span class="color-pill"><span class="color-swatch" style="background: #35493B;"></span>#35493B</span><br>
+                <strong>Lujo:</strong> <span class="color-pill"><span class="color-swatch" style="background: #553343;"></span>#553343</span>
+              </td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span>, Negrita</td>
+            </tr>
+            <tr>
+              <td><strong>Celdas de Datos</strong></td>
+              <td>Texto a la izq. / Valores a la der.</td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span></td>
+            </tr>
+            <tr>
+              <td><strong>Datos Opcionales</strong></td>
+              <td>Texto a la izq. / Valores a la der.</td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F8FAFC;"></span>#F8FAFC</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span>, Itálica</td>
+            </tr>
+            <tr>
+              <td><strong>Línea de Total</strong></td>
+              <td>Texto a la izq. / Valores a la der.</td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #F1F5F9;"></span>#F1F5F9</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #1E293B;"></span>#1E293B</span>, Negrita</td>
+            </tr>
+            <tr>
+              <td><strong>Contorno / Cuadrícula</strong></td>
+              <td>Estructural</td>
+              <td>Línea simple en <span class="color-pill"><span class="color-swatch" style="background: #CBD5E1;"></span>#CBD5E1</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel (Matriz Completa del Desglose):</div>
+          <table class="excel-grid-preview">
+            <!-- Fila 1: Encabezados Principales de Fecha -->
+            <tr>
+              <th colspan="3" style="background: #1E293B; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; border-left: none;">
+                18/03/2027
+              </th>
+              <th colspan="3" style="background: #1E293B; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; border-right: none;">
+                27/03/2027
+              </th>
+            </tr>
+            <!-- Fila 2: Subencabezados de Columnas -->
+            <tr>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; border-left: none; width: 15%;">Categoría</th>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; width: 25%;">Circuito</th>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; width: 15%;">Cantidad</th>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; width: 15%;">DBL</th>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; width: 15%;">SGL</th>
+              <th style="background: #334155; color: #FFFFFF; font-weight: 700; text-align: center; border: 1px solid #CBD5E1; border-right: none; width: 15%;">TPL</th>
+            </tr>
+            <!-- Fila de Datos 1: Principal Circuito -->
+            <tr>
+              <td rowspan="3" style="background: #FFFFFF; color: #1E293B; font-weight: 400; text-align: center; border: 1px solid #CBD5E1; border-left: none; vertical-align: middle;">
+                Primera
+              </td>
+              <td style="background: #FFFFFF; color: #1E293B; border: 1px solid #CBD5E1;">
+                Festival Holi y Rio Ganges (opción 2)
+              </td>
+              <td style="background: #FFFFFF; color: #1E293B; text-align: center; border: 1px solid #CBD5E1;">
+                9 noches
+              </td>
+              <td style="background: #FFFFFF; color: #1E293B; text-align: right; border: 1px solid #CBD5E1;">781</td>
+              <td style="background: #FFFFFF; color: #1E293B; text-align: right; border: 1px solid #CBD5E1;">1,176</td>
+              <td style="background: #FFFFFF; color: #1E293B; text-align: right; border: 1px solid #CBD5E1; border-right: none;">781</td>
+            </tr>
+            <!-- Fila de Datos 2: Opcional 1 -->
+            <tr>
+              <td style="background: #F8FAFC; color: #2563EB; font-style: italic; font-weight: 600; text-decoration: underline; border: 1px solid #CBD5E1; cursor: pointer;">
+                Noche extra
+              </td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: center; border: 1px solid #CBD5E1;">
+                1 &#9660;
+              </td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1;">44</td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1;">87</td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1; border-right: none;">39</td>
+            </tr>
+            <!-- Fila de Datos 3: Opcional 2 -->
+            <tr>
+              <td style="background: #F8FAFC; color: #2563EB; font-style: italic; font-weight: 600; text-decoration: underline; border: 1px solid #CBD5E1; cursor: pointer;">
+                Traslado extra
+              </td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: center; border: 1px solid #CBD5E1;">
+                No &#9660;
+              </td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1;">0</td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1;">0</td>
+              <td style="background: #F8FAFC; color: #1E293B; font-style: italic; text-align: right; border: 1px solid #CBD5E1; border-right: none;">0</td>
+            </tr>
+            <!-- Fila Separadora: Otros -->
+            <tr>
+              <td colspan="3" style="background: #FFFFFF; color: #1E293B; border: 1px solid #CBD5E1; border-left: none;">Otros</td>
+              <td style="background: #FFFFFF; border: 1px solid #CBD5E1;"></td>
+              <td style="background: #FFFFFF; border: 1px solid #CBD5E1;"></td>
+              <td style="background: #FFFFFF; border: 1px solid #CBD5E1; border-right: none;"></td>
+            </tr>
+            <!-- Fila de Total -->
+            <tr>
+              <td colspan="3" style="background: #F1F5F9; color: #1E293B; font-weight: 700; border: 1px solid #CBD5E1; border-left: none;">
+                Total (EUR)
+              </td>
+              <td style="background: #F1F5F9; color: #1E293B; font-weight: 700; text-align: right; border: 1px solid #CBD5E1;">825</td>
+              <td style="background: #F1F5F9; color: #1E293B; font-weight: 700; text-align: right; border: 1px solid #CBD5E1;">1,263</td>
+              <td style="background: #F1F5F9; color: #1E293B; font-weight: 700; text-align: right; border: 1px solid #CBD5E1; border-right: none;">820</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 8) NOTAS IMPORTANTES -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-number">8</span>
+          <h2 class="section-title">Notas importantes</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Elemento / Célula</th>
+              <th>Color de Fondo</th>
+              <th>Color y Estilo de Texto</th>
+              <th>Alineación y Bordes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Título ("Notas importantes")</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #D97706;"></span>#D97706</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FFFFFF;"></span>#FFFFFF</span> / Negrita</td>
+              <td>Izquierda. Solo primera columna. <strong>Mantener título en celda única sin combinar.</strong> Borde fino (<span class="color-pill"><span class="color-swatch" style="background: #D97706;"></span>#D97706</span>).</td>
+            </tr>
+            <tr>
+              <td><strong>Cuerpo de Notas</strong></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #FEF3C7;"></span>#FEF3C7</span></td>
+              <td><span class="color-pill"><span class="color-swatch" style="background: #783504;"></span>#783504</span> (Etiquetas en <span class="color-pill"><span class="color-swatch" style="background: #C2410C;"></span>#C2410C</span> Negrita)</td>
+              <td>Izquierda. <strong>Borde lateral izquierdo continuo de 3px (<span class="color-pill"><span class="color-swatch" style="background: #D97706;"></span>#D97706</span>)</strong>. Sin borde externo derecho. Divisores internos suaves (<span class="color-pill"><span class="color-swatch" style="background: #FDE68A;"></span>#FDE68A</span>).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="preview-card">
+          <div class="preview-label">Ejemplo de Aplicación en Excel (Réplica Exacta):</div>
+          <table class="excel-grid-preview" style="border-collapse: collapse;">
+            <tr>
+              <td style="background: #D97706; color: #FFFFFF; font-weight: 700; width: 35%; border: 1px solid #D97706; border-left: 3px solid #D97706;">
+                Notas importantes
+              </td>
+              <td style="border: none; background: transparent;"></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background: #FEF3C7; color: #783504; border-left: 3px solid #D97706; border-bottom: 1px solid #FDE68A; padding-left: 10px;">
+                <strong style="color: #C2410C;">[Visitas]</strong> No se podrá subir en elefante al Fuerte Amber durante la época de N...
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background: #FEF3C7; color: #783504; border-left: 3px solid #D97706; border-bottom: 1px solid #FDE68A; padding-left: 10px;">
+                <strong style="color: #C2410C;">[Noche extra]</strong> Se ha incluido 1 noche extra por defecto debido al horario de lle...
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABA 2: CHECKLIST DE VALIDACIÓN -->
+  <div id="checklistTab" class="tab-content">
+    <div class="checklist-header">
+      <div class="header-top">
+        <h2>Checklist de Validación UX</h2>
+        <button class="btn-reset" onclick="resetChecklist()">🔄 Reiniciar Todo</button>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">0 de 0 validados (0%)</div>
+    </div>
+
+    <main id="checklistContainer">
+      <!-- 0. Configuración General -->
+      <div class="checklist-section-title">0. Configuración General</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Ocultar líneas de cuadrícula</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar fuente Inter 10 para todo el documento</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar fuente Inter 20 para el Título Principal</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Ajustar alto de filas y ancho de columnas</span></label>
+      </div>
+
+      <!-- 1. Título -->
+      <div class="checklist-section-title">1. Título del Programa</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Ajustar celda sin bordes externos laterales</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto</span></label>
+      </div>
+
+      <!-- 2. Salidas desde España -->
+      <div class="checklist-section-title">2. Salidas desde España</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Alinear textos a la izquierda</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Mantener título en celda única sin combinar</span></label>
+      </div>
+
+      <!-- 3. Ficha del Circuito -->
+      <div class="checklist-section-title">3. Ficha del Circuito</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Añadir bordes en la tabla</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto intercalado</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar negrita en etiquetas de menú</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Mantener título en celda única sin combinar</span></label>
+      </div>
+
+      <!-- 4. Selección de Fechas -->
+      <div class="checklist-section-title">4. Selección de Fechas de Salida</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Añadir bordes al cuadro de fechas</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar borde azul en la celda de selección de fechas</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Mantener título en celda única sin combinar</span></label>
+      </div>
+
+      <!-- 5. Presupuestador -->
+      <div class="checklist-section-title">5. Presupuestador</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Añadir bordes en los módulos</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Añadir texto "Insertar manualmente"</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto en PVP y PVP Mínimo</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar estilos según variante de categoría</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar formato condicional (#EFF6FF de fondo, #1D4ED8 en negrita)</span></label>
+      </div>
+
+      <!-- 6. Ficha de Contrato y Enlaces -->
+      <div class="checklist-section-title">6. Ficha de Contrato y Enlaces</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Añadir bordes al cuadro del contrato</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Verificar que los enlaces funcionan</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar estilo de enlace</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Mantener título en celda única sin combinar</span></label>
+      </div>
+
+      <!-- 7. Desglose -->
+      <div class="checklist-section-title">7. Desglose</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto en encabezados</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Textos alineados a la izquierda y números a la derecha</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar negrita en Totales y cursiva en Opcionales</span></label>
+      </div>
+
+      <!-- 8. Notas importantes -->
+      <div class="checklist-section-title">8. Notas importantes</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><span class="item-text">Aplicar color de fondo y texto</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Destacar borde lateral izquierdo</span></label>
+        <label class="item"><input type="checkbox"><span class="item-text">Mantener título en celda única sin combinar</span></label>
+      </div>
+    </main>
+  </div>
+
+  <!-- ABA 3: PROGRESOS POR PAÍS -->
+  <div id="progressTab" class="tab-content">
+    <div class="checklist-header">
+      <div class="header-top">
+        <h2>Acompanhamento da Migração por País</h2>
+        <button class="btn-reset" onclick="resetCountryProgress()">🔄 Reiniciar Progresso</button>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="countryProgressBar"></div>
+      </div>
+      <div class="progress-text" id="countryProgressText">0 de 0 concluídos (0%)</div>
+
+      <div class="country-stats">
+        <div class="stat-card">
+          <div class="num" id="statCompleted" style="color: var(--success);">0</div>
+          <div class="label">Concluídos</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="statProgress" style="color: var(--warning);">0</div>
+          <div class="label">Em Progresso</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="statPending" style="color: var(--danger);">0</div>
+          <div class="label">Pendentes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <table class="country-table">
+        <thead>
+          <tr>
+            <th style="width: 10%; text-align: center;">#</th>
+            <th style="width: 60%;">País / Categoria</th>
+            <th style="width: 30%; text-align: center;">Status de Migração</th>
+          </tr>
+        </thead>
+        <tbody id="countryTableBody">
+          <!-- Gerado dinamicamente via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Cambiar entre Abas
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Progreso del Checklist (Aba 2)
+  const checkboxes = document.querySelectorAll('#checklistTab input[type="checkbox"]');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+
+  function updateProgress() {
+    const total = checkboxes.length;
+    let checkedCount = 0;
+
+    checkboxes.forEach(chk => {
+      const itemLabel = chk.closest('.item');
+      if (chk.checked) {
+        checkedCount++;
+        itemLabel.classList.add('checked');
+      } else {
+        itemLabel.classList.remove('checked');
+      }
+    });
+
+    const percentage = Math.round((checkedCount / total) * 100);
+    progressBar.style.width = percentage + '%';
+    progressText.textContent = `${checkedCount} de ${total} validados (${percentage}%)`;
+  }
+
+  function resetChecklist() {
+    if (confirm("¿Reiniciar checklist para una nueva página?")) {
+      checkboxes.forEach(chk => chk.checked = false);
+      updateProgress();
+    }
+  }
+
+  checkboxes.forEach(chk => chk.addEventListener('change', updateProgress));
+  updateProgress();
+
+  // -------------------------------------------------------------
+  // GESTÃO DA ABA 3 (PROGRESSO POR PAÍS)
+  // -------------------------------------------------------------
+  const countryList = [
+    "Cabo Verde", "Kenia", "Madagascar", "Marruecos", "Mauricio", "Namibia", "Seychelles", "Sudáfrica", "Tanzania", "Túnez",
+    "Argentina", "Brasil", "Canadá", "Chile", "Colombia", "Costa Rica", "Ecuador", "Estados Unidos", "Panamá", "Perú",
+    "República Dominicana", "Bali-Indonesia", "Bután", "Cáucaso", "China", "Corea del Sur", "Filipinas", "India", "Japón", "Malasia",
+    "Maldivas", "Myanmar", "Nepal", "Sri Lanka", "Tailandia", "Uzbekistán", "Vietnam", "Arabia Saudita", "Dubái", "Egipto",
+    "Jordania", "Omán", "Turquía", "Australia", "Nueva Zelanda", "Croacia", "Escandinavia", "Grecia", "Islandia", "Rusia",
+    "Luna de miel"
+  ];
+
+  const STORAGE_KEY = "country_migration_status_v1";
+
+  function getSavedStatuses() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  }
+
+  function saveStatuses(statuses) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(statuses));
+  }
+
+  function renderCountryTable() {
+    const tbody = document.getElementById('countryTableBody');
+    const statuses = getSavedStatuses();
+    tbody.innerHTML = '';
+
+    countryList.forEach((country, index) => {
+      const currentStatus = statuses[country] || 'pending';
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td style="text-align: center; font-weight: 700; color: #64748B;">${index + 1}</td>
+        <td style="font-weight: 600; color: #1E293B;">${country}</td>
+        <td style="text-align: center;">
+          <select class="status-select ${getStatusClass(currentStatus)}" onchange="updateCountryStatus('${country}', this.value, this)">
+            <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>❌ Pendente</option>
+            <option value="progress" ${currentStatus === 'progress' ? 'selected' : ''}>⏳ Em Progresso</option>
+            <option value="completed" ${currentStatus === 'completed' ? 'selected' : ''}>✅ Concluído</option>
+          </select>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    updateCountryStats();
+  }
+
+  function getStatusClass(status) {
+    if (status === 'completed') return 'status-completed';
+    if (status === 'progress') return 'status-progress';
+    return 'status-pending';
+  }
+
+  function updateCountryStatus(country, newStatus, selectElement) {
+    const statuses = getSavedStatuses();
+    statuses[country] = newStatus;
+    saveStatuses(statuses);
+
+    selectElement.className = `status-select ${getStatusClass(newStatus)}`;
+    updateCountryStats();
+  }
+
+  function updateCountryStats() {
+    const statuses = getSavedStatuses();
+    let completed = 0;
+    let progress = 0;
+    let pending = 0;
+
+    countryList.forEach(country => {
+      const st = statuses[country] || 'pending';
+      if (st === 'completed') completed++;
+      else if (st === 'progress') progress++;
+      else pending++;
+    });
+
+    const total = countryList.length;
+    const percentage = Math.round((completed / total) * 100);
+
+    document.getElementById('statCompleted').textContent = completed;
+    document.getElementById('statProgress').textContent = progress;
+    document.getElementById('statPending').textContent = pending;
+
+    document.getElementById('countryProgressBar').style.width = percentage + '%';
+    document.getElementById('countryProgressText').textContent = `${completed} de ${total} concluídos (${percentage}%)`;
+  }
+
+  function resetCountryProgress() {
+    if (confirm("Deseja realmente reiniciar todo o progresso dos países?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      renderCountryTable();
+    }
+  }
+
+  // Inicializar Tabela de Países
+  renderCountryTable();
+</script>
+
+</body>
+</html>

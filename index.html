@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Control & Sistema de Diseño UX — Cotizadores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #475569;
+      --border-color: #CBD5E1;
+      --primary: #1E293B;
+      --accent: #269085;
+      --focus-blue: #2563EB;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding: 24px 16px;
+    }
+
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* HEADER FIXO DE NAVEGAÇÃO */
+    .portal-header {
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .portal-title h1 {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+    }
+
+    .portal-title p {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+
+    /* NAVEGAÇÃO SUPERIOR POR ABAS */
+    .tab-navigation {
+      display: flex;
+      gap: 10px;
+      background: var(--card-bg);
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: #F1F5F9;
+      color: var(--text-muted);
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 12.5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(30, 41, 59, 0.2);
+    }
+
+    /* CONTENEDOR DE IFRAME RESPONSIVO */
+    .iframe-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      height: 82vh;
+      position: relative;
+    }
+
+    .iframe-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <!-- ENCABEZADO CENTRAL -->
+  <header class="portal-header">
+    <div class="portal-title">
+      <h1>🚀 Hub Central — Sistema de Diseño & Gestión UX</h1>
+      <p>Plataforma Integrada de Documentación y Control para Cotizadores de Viaje</p>
+    </div>
+  </header>
+
+  <!-- MENÚ DE NAVEGACIÓN SUPERIOR -->
+  <nav class="tab-navigation">
+    <button class="tab-btn active" onclick="loadPage('sistema-de-diseno.html', this)">
+      📘 1. Sistema de Diseño & Directrices UX
+    </button>
+    <button class="tab-btn" onclick="loadPage('controle-aplicacao.html', this)">
+      📊 2. Control de Aplicación de Diseño
+    </button>
+  </nav>
+
+  <!-- CONTENEDOR DEL IFRAME DE CADA ARCHIVO -->
+  <main class="iframe-card">
+    <iframe id="contentFrame" src="sistema-de-diseno.html" title="Contenido Cotizadores UX"></iframe>
+  </main>
+</div>
+
+<script>
+  function loadPage(pageUrl, btnElement) {
+    // Actualiza la fuente del iframe
+    document.getElementById('contentFrame').src = pageUrl;
+
+    // Actualiza el estado visual de los botones
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

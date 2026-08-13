@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Aplicación de Diseño — Vietnam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #475569;
+      --border-color: #CBD5E1;
+      --primary: #1E293B;
+      --accent: #269085;
+      --focus-blue: #2563EB;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding: 16px;
+    }
+
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* BLOCO PAINEL FIXO (STICKY HEADER) */
+    .sticky-header-wrapper {
+      position: sticky;
+      top: 10px;
+      z-index: 300;
+      background: var(--bg-main);
+      padding-bottom: 12px;
+    }
+
+    /* SUMMARY BANNER */
+    .summary-banner {
+      background: #F1F5F9;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .summary-banner h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .summary-banner p {
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .summary-banner ul {
+      margin-left: 18px;
+      color: var(--text-muted);
+      font-size: 11.5px;
+    }
+
+    /* ESTILOS DEL CHECKLIST / PROGRESS FIXO */
+    .checklist-header {
+      background: var(--card-bg);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border-color);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .header-top h2 {
+      font-size: 16px;
+    }
+
+    .btn-reset {
+      background-color: #FEE2E2;
+      color: var(--danger);
+      border: 1px solid #FCA5A5;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--danger);
+      color: #FFFFFF;
+    }
+
+    .progress-container {
+      width: 100%;
+      background-color: var(--border-color);
+      height: 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--success);
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .country-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .stat-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-card .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* TABLA E CARDS */
+    .container {
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    /* FILTROS Y BÚSQUEDA */
+    .controls-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 2;
+      min-width: 200px;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .filter-select {
+      flex: 1;
+      min-width: 140px;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+      background: #FFFFFF;
+    }
+
+    /* TABLA DE VIAJES */
+    .country-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      background: #FFFFFF;
+      font-size: 12.5px;
+    }
+
+    .country-table th {
+      background: #F1F5F9;
+      color: #1E293B;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 10.5px;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .country-table td {
+      padding: 8px 10px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .status-select {
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      font-size: 11.5px;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      max-width: 150px;
+    }
+
+    .status-pending {
+      background-color: #FEF2F2;
+      color: #991B1B;
+      border-color: #FCA5A5;
+    }
+
+    .status-progress {
+      background-color: #FEF3C7;
+      color: #92400E;
+      border-color: #FDE68A;
+    }
+
+    .status-completed {
+      background-color: #D1FAE5;
+      color: #065F46;
+      border-color: #6EE7B7;
+    }
+
+    @media print {
+      body { background: #FFF; padding: 0; }
+      .container { box-shadow: none; padding: 0; }
+      .sticky-header-wrapper { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  
+  <!-- BLOCO FIXO QUE ACOMPANHA O SCROLL -->
+  <div class="sticky-header-wrapper">
+    <!-- RESUMEN DE INSTRUCCIONES -->
+    <div class="summary-banner">
+      <h4>📌 Instrucción Principal de Diseño</h4>
+      <p>Aplicar el nuevo Sistema de Diseño UX en la plantilla y <strong style="color: #D97706;">mirar las fechas del desglose</strong>.</p>
+      <ul>
+        <li><strong>Coherencia Temporal:</strong> Verificar la exactitud de las fechas iniciales y finales asignadas en el desglose de precios.</li>
+        <li><strong>Estructura Visual:</strong> Garantizar la aplicación de las paletas oficiales (headers, fondos, itálicas en opcionales y líneas de total).</li>
+      </ul>
+    </div>
+
+    <!-- DASHBOARD DE PROGRESSO -->
+    <div class="checklist-header">
+      <div class="header-top">
+        <h2>Control de Aplicación — Rutas de Vietnam & Indochina</h2>
+        <button class="btn-reset" onclick="resetTravelProgress()">🔄 Reiniciar Todo</button>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="travelProgressBar"></div>
+      </div>
+      <div class="progress-text" id="travelProgressText">0 de 0 completados (0%)</div>
+
+      <div class="country-stats">
+        <div class="stat-card">
+          <div class="num" id="statCompleted" style="color: var(--success);">0</div>
+          <div class="label">Completados</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="statProgress" style="color: var(--warning);">0</div>
+          <div class="label">En Progreso</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="statPending" style="color: var(--danger);">0</div>
+          <div class="label">Pendientes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA Y FILTROS -->
+  <div class="container">
+    <div class="controls-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre de programa (ej. Sa Pa, Halong, Phu Quoc)..." onkeyup="filterTravels()">
+      <select id="filterSelect" class="filter-select" onchange="filterTravels()">
+        <option value="all">Todos los estados</option>
+        <option value="pending">❌ Pendientes</option>
+        <option value="progress">⏳ En Progreso</option>
+        <option value="completed">✅ Completados</option>
+      </select>
+    </div>
+
+    <table class="country-table">
+      <thead>
+        <tr>
+          <th style="width: 8%; text-align: center;">#</th>
+          <th style="width: 62%;">Programa / Cotizador de Viaje</th>
+          <th style="width: 30%; text-align: center;">Estado de Actualización</th>
+        </tr>
+      </thead>
+      <tbody id="travelTableBody">
+        <!-- Cargado dinámicamente con JS -->
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  // LISTA OFICIAL ACTUALIZADA: 16 RUTAS DE VIETNAM E INDOCHINA
+  const travelList = [
+    "Viaje a Vietnam 12 días con Puente Dorado",
+    "Viaje en privado por Vietnam con Sa Pa en 12 días",
+    "Viaje privado a Vietnam de 12 días",
+    "Viaje a Hanói, Halong, Hoi An, Hue y Ho Chi Minh en 12 días",
+    "Viaje por Vietnam de 15 días y playas de Phu Quoc",
+    "Viaje de norte a sur de Vietnam con playas de Long Hai en 15 días",
+    "Viaje a Vietnam 14 días con Sa Pa",
+    "Circuito Vietnam y Camboya en privado de 13 días",
+    "Circuito organizado por Vietnam y Camboya de 15 días",
+    "Viaje por Vietnam y Camboya 17 días",
+    "Viaje combinado por Vietnam, Camboya y Tailandia en 17 días",
+    "Viaje a la esencia de Vietnam: de Hanói a Ho Chi Minh en 11 días",
+    "Vietnam y Camboya de 13 días: Hanói, Hue, Ho Chi Minh y templos de Angkor",
+    "Viaje a Vietnam, Laos y Camboya de 17 días",
+    "Viaje a Vietnam de sur a norte en 11 días: de Saigón a la Bahía de Halong",
+    "SOLO PRESUPUESTADOR - Viaje a Vietnam con Sapa y Camboya en 15 días"
+  ];
+
+  const STORAGE_KEY = "design_system_vietnam_travels_v1";
+
+  function getSavedStatuses() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  }
+
+  function saveStatuses(statuses) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(statuses));
+  }
+
+  function renderTravelTable() {
+    const tbody = document.getElementById('travelTableBody');
+    const statuses = getSavedStatuses();
+    tbody.innerHTML = '';
+
+    travelList.forEach((travel, index) => {
+      const currentStatus = statuses[travel] || 'pending';
+      const tr = document.createElement('tr');
+      tr.setAttribute('data-travel', travel.toLowerCase());
+      tr.setAttribute('data-status', currentStatus);
+
+      tr.innerHTML = `
+        <td style="text-align: center; font-weight: 700; color: #64748B;">${index + 1}</td>
+        <td style="font-weight: 600; color: #1E293B;">${travel}</td>
+        <td style="text-align: center;">
+          <select class="status-select ${getStatusClass(currentStatus)}" onchange="updateTravelStatus('${travel.replace(/'/g, "\\'")}', this.value, this)">
+            <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>❌ Pendiente</option>
+            <option value="progress" ${currentStatus === 'progress' ? 'selected' : ''}>⏳ En Progreso</option>
+            <option value="completed" ${currentStatus === 'completed' ? 'selected' : ''}>✅ Completado</option>
+          </select>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    updateTravelStats();
+    filterTravels();
+  }
+
+  function getStatusClass(status) {
+    if (status === 'completed') return 'status-completed';
+    if (status === 'progress') return 'status-progress';
+    return 'status-pending';
+  }
+
+  function updateTravelStatus(travel, newStatus, selectElement) {
+    const statuses = getSavedStatuses();
+    statuses[travel] = newStatus;
+    saveStatuses(statuses);
+
+    selectElement.className = `status-select ${getStatusClass(newStatus)}`;
+    const tr = selectElement.closest('tr');
+    tr.setAttribute('data-status', newStatus);
+
+    updateTravelStats();
+  }
+
+  function updateTravelStats() {
+    const statuses = getSavedStatuses();
+    let completed = 0;
+    let progress = 0;
+    let pending = 0;
+
+    travelList.forEach(travel => {
+      const st = statuses[travel] || 'pending';
+      if (st === 'completed') completed++;
+      else if (st === 'progress') progress++;
+      else pending++;
+    });
+
+    const total = travelList.length;
+    const percentage = Math.round((completed / total) * 100);
+
+    document.getElementById('statCompleted').textContent = completed;
+    document.getElementById('statProgress').textContent = progress;
+    document.getElementById('statPending').textContent = pending;
+
+    document.getElementById('travelProgressBar').style.width = percentage + '%';
+    document.getElementById('travelProgressText').textContent = `${completed} de ${total} completados (${percentage}%)`;
+  }
+
+  function filterTravels() {
+    const searchValue = document.getElementById('searchInput').value.toLowerCase();
+    const filterValue = document.getElementById('filterSelect').value;
+    const rows = document.querySelectorAll('#travelTableBody tr');
+
+    rows.forEach(row => {
+      const travelText = row.getAttribute('data-travel');
+      const travelStatus = row.getAttribute('data-status');
+
+      const matchesSearch = travelText.includes(searchValue);
+      const matchesFilter = (filterValue === 'all') || (travelStatus === filterValue);
+
+      if (matchesSearch && matchesFilter) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function resetTravelProgress() {
+    if (confirm("¿Desea reiniciar el progreso de todas las rutas del Vietnam?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      renderTravelTable();
+    }
+  }
+
+  // Inicialización
+  renderTravelTable();
+</script>
+
+</body>
+</html>

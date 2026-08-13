@@ -42,6 +42,30 @@
       margin: 0 auto;
     }
 
+      /* ESTILO DO BOTÃO DE VOLTAR AO ÍNDICE */
+  .btn-back-index {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-back-index:hover {
+    background-color: #F1F5F9;
+    border-color: #94A3B8;
+  }
+
     /* BLOCO PAINEL FIXO (STICKY HEADER) */
     .sticky-header-wrapper {
       position: sticky;
@@ -279,6 +303,11 @@
 <body>
 
 <div class="main-wrapper">
+
+  <!-- BOTÃO DE VOLTAR AO ÍNDICE AQUI -->
+  <a href="index.html" class="btn-back-index">
+    ← Voltar ao Índice
+  </a>
   
   <!-- BLOCO FIXO QUE ACOMPANHA O SCROLL -->
   <div class="sticky-header-wrapper">

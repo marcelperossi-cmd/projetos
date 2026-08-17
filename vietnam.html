@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Control de Aplicación de Diseño — Vietnam</title>
+  <title>Grécia — Cotizadores de Viaje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -41,30 +41,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
-      /* ESTILO DO BOTÃO DE VOLTAR AO ÍNDICE */
-  .btn-back-index {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background-color: var(--card-bg);
-    color: var(--text-dark);
-    border: 1px solid var(--border-color);
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    margin-bottom: 16px;
-    transition: all 0.2s ease;
-  }
-
-  .btn-back-index:hover {
-    background-color: #F1F5F9;
-    border-color: #94A3B8;
-  }
 
     /* BLOCO PAINEL FIXO (STICKY HEADER) */
     .sticky-header-wrapper {
@@ -128,7 +104,10 @@
     }
 
     .header-top h2 {
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
     }
 
     .btn-reset {
@@ -303,11 +282,6 @@
 <body>
 
 <div class="main-wrapper">
-
-  <!-- BOTÃO DE VOLTAR AO ÍNDICE AQUI -->
-  <a href="index.html" class="btn-back-index">
-    ← Voltar ao Índice
-  </a>
   
   <!-- BLOCO FIXO QUE ACOMPANHA O SCROLL -->
   <div class="sticky-header-wrapper">
@@ -324,9 +298,10 @@
     <!-- DASHBOARD DE PROGRESSO -->
     <div class="checklist-header">
       <div class="header-top">
-        <h2>Control de Aplicación — Rutas de Vietnam & Indochina</h2>
+        <h2>Grécia</h2>
         <button class="btn-reset" onclick="resetTravelProgress()">🔄 Reiniciar Todo</button>
       </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">Panel de seguimiento de actualización de los cotizadores</p>
       <div class="progress-container">
         <div class="progress-bar" id="travelProgressBar"></div>
       </div>
@@ -352,7 +327,7 @@
   <!-- TABLA Y FILTROS -->
   <div class="container">
     <div class="controls-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre de programa (ej. Sa Pa, Halong, Phu Quoc)..." onkeyup="filterTravels()">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre de programa (ej. Atenas, Santorini, Mykonos)..." onkeyup="filterTravels()">
       <select id="filterSelect" class="filter-select" onchange="filterTravels()">
         <option value="all">Todos los estados</option>
         <option value="pending">❌ Pendientes</option>
@@ -378,27 +353,24 @@
 </div>
 
 <script>
-  // LISTA OFICIAL ACTUALIZADA: 16 RUTAS DE VIETNAM E INDOCHINA
+  // LISTA OFICIAL ACTUALIZADA: 13 RUTAS DE GRÉCIA
   const travelList = [
-    "Viaje a Vietnam 12 días con Puente Dorado",
-    "Viaje en privado por Vietnam con Sa Pa en 12 días",
-    "Viaje privado a Vietnam de 12 días",
-    "Viaje a Hanói, Halong, Hoi An, Hue y Ho Chi Minh en 12 días",
-    "Viaje por Vietnam de 15 días y playas de Phu Quoc",
-    "Viaje de norte a sur de Vietnam con playas de Long Hai en 15 días",
-    "Viaje a Vietnam 14 días con Sa Pa",
-    "Circuito Vietnam y Camboya en privado de 13 días",
-    "Circuito organizado por Vietnam y Camboya de 15 días",
-    "Viaje por Vietnam y Camboya 17 días",
-    "Viaje combinado por Vietnam, Camboya y Tailandia en 17 días",
-    "Viaje a la esencia de Vietnam: de Hanói a Ho Chi Minh en 11 días",
-    "Vietnam y Camboya de 13 días: Hanói, Hue, Ho Chi Minh y templos de Angkor",
-    "Viaje a Vietnam, Laos y Camboya de 17 días",
-    "Viaje a Vietnam de sur a norte en 11 días: de Saigón a la Bahía de Halong",
-    "SOLO PRESUPUESTADOR - Viaje a Vietnam con Sapa y Camboya en 15 días"
+    "Circuito por Grecia con Atenas, Mykonos y Santorini en 10 días",
+    "Viaje por Atenas, Olimpia, Delfos y Meteora en 7 días",
+    "EUR - Viaje a Grecia con crucero por Islas Griegas en 7 días",
+    "LAT - Viaje a Grecia con crucero por Islas Griegas en 7 días",
+    "Viaje por Atenas y Santorini 7 días",
+    "Viaje a Islas griegas: Atenas, Mykonos, Santorini, Naxos y Paros en 12 días",
+    "Viaje por Atenas y Mykonos en 7 días",
+    "Viaje a Atenas en 5 días",
+    "Viaje a la Grecia clásica: Atenas, Delfos y Meteora en 5 días",
+    "Circuito por la tierra del Peloponeso y la mitología griega en 6 días",
+    "Turquía y Grecia: viaje a los paisajes del Mediterráneo en 11 días",
+    "EUR - Crucero por el Mar Egeo: viaje a Grecia, Egipto, Israel y Turquía en 10 días",
+    "LAT - Crucero por el Mar Egeo: viaje a Grecia, Egipto, Israel y Turquía en 10 días"
   ];
 
-  const STORAGE_KEY = "design_system_vietnam_travels_v1";
+  const STORAGE_KEY = "design_system_grecia_travels_v1";
 
   function getSavedStatuses() {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -501,7 +473,7 @@
   }
 
   function resetTravelProgress() {
-    if (confirm("¿Desea reiniciar el progreso de todas las rutas del Vietnam?")) {
+    if (confirm("¿Desea reiniciar el progreso de todas las rutas de Grecia?")) {
       localStorage.removeItem(STORAGE_KEY);
       renderTravelTable();
     }

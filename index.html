@@ -42,7 +42,7 @@
       border-radius: var(--radius);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
       width: 100%;
-      max-width: 680px;
+      max-width: 760px;
       padding: 40px 32px;
       text-align: center;
     }
@@ -62,45 +62,48 @@
       margin-bottom: 32px;
     }
 
-    /* CONTAINER DOS BOTÕES / CARDS */
+    /* GRID DE CARDS QUADRADOS */
     .buttons-container {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
       gap: 16px;
     }
 
     .action-btn {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
+      aspect-ratio: 1 / 1;
       background: #FFFFFF;
       border: 2px solid var(--border-color);
-      padding: 20px 24px;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 12px;
       text-decoration: none;
       color: var(--text-dark);
       transition: all 0.2s ease-in-out;
       cursor: pointer;
+      text-align: left;
     }
 
     .action-btn:hover {
       border-color: var(--focus-blue);
       background: #EFF6FF;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
     }
 
     .btn-info {
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
     .btn-info .btn-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--primary);
       text-transform: uppercase;
-      display: block;
-      margin-bottom: 4px;
+      line-height: 1.3;
     }
 
     .action-btn:hover .btn-title {
@@ -108,16 +111,17 @@
     }
 
     .btn-info .btn-desc {
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-muted);
+      line-height: 1.3;
     }
 
     .btn-arrow {
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-muted);
       transition: transform 0.2s ease;
       font-weight: 700;
-      margin-left: 12px;
+      align-self: flex-end;
     }
 
     .action-btn:hover .btn-arrow {

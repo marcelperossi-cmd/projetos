@@ -13,8 +13,8 @@
       --card-bg: #FFFFFF;
       --text-dark: #1E293B;
       --text-muted: #64748B;
-      --border-color: #CBD5E1;
-      --primary: #1E293B;
+      --border-color: #E2E8F0;
+      --primary: #0F172A;
       --focus-blue: #2563EB;
       --radius: 12px;
     }
@@ -33,14 +33,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 32px 16px;
     }
 
     .portal-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
       width: 100%;
       max-width: 760px;
       padding: 40px 32px;
@@ -62,10 +62,10 @@
       margin-bottom: 32px;
     }
 
-    /* GRID DE CARDS QUADRADOS */
+    /* GRID DE CARDS */
     .buttons-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       gap: 16px;
     }
 
@@ -73,9 +73,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      aspect-ratio: 1 / 1;
       background: #FFFFFF;
-      border: 2px solid var(--border-color);
+      border: 1.5px solid var(--border-color);
       padding: 20px;
       border-radius: 12px;
       text-decoration: none;
@@ -83,45 +82,40 @@
       transition: all 0.2s ease-in-out;
       cursor: pointer;
       text-align: left;
+      min-height: 180px;
     }
 
     .action-btn:hover {
       border-color: var(--focus-blue);
-      background: #EFF6FF;
+      background: #F8FAFC;
       transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
     }
 
-    .btn-info {
+    /* TOPO DO CARD (ÍCONE + SETA) */
+    .card-top {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
     }
 
-    .btn-info .btn-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      line-height: 1.3;
-    }
-
-    .action-btn:hover .btn-title {
-      color: var(--focus-blue);
-    }
-
-    .btn-info .btn-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.3;
+    .card-icon {
+      font-size: 20px;
+      background: #F1F5F9;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
     }
 
     .btn-arrow {
       font-size: 18px;
-      color: var(--text-muted);
-      transition: transform 0.2s ease;
+      color: #94A3B8;
+      transition: transform 0.2s ease, color 0.2s ease;
       font-weight: 700;
-      align-self: flex-end;
     }
 
     .action-btn:hover .btn-arrow {
@@ -129,9 +123,35 @@
       transform: translateX(4px);
     }
 
+    /* CORPO DO CARD (TÍTULO + DESCRIÇÃO) */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      line-height: 1.35;
+      letter-spacing: -0.2px;
+    }
+
+    .action-btn:hover .btn-title {
+      color: var(--focus-blue);
+    }
+
+    .btn-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
     /* FOOTER DISCRETO */
     .portal-footer {
-      margin-top: 32px;
+      margin-top: 36px;
       font-size: 11.5px;
       color: #94A3B8;
       text-transform: uppercase;
@@ -148,49 +168,64 @@
     </header>
 
     <div class="buttons-container">
-      <!-- BOTÓN 1: MANUAL DE DESIGN -->
+      <!-- CARD 1: MANUAL DE DESIGN -->
       <a href="sistema-de-diseno.html" class="action-btn">
-        <div class="btn-info">
-          <span class="btn-title">📘 Sistema de Diseño & Directrices UX</span>
-          <span class="btn-desc">Manual de especificaciones técnicas, dimensiones y checklist UX</span>
+        <div class="card-top">
+          <span class="card-icon">📘</span>
+          <span class="btn-arrow">→</span>
         </div>
-        <span class="btn-arrow">→</span>
+        <div class="card-body">
+          <span class="btn-title">Sistema de Diseño & Directrices UX</span>
+          <p class="btn-desc">Manual de especificaciones técnicas, dimensiones y checklist UX</p>
+        </div>
       </a>
 
-      <!-- BOTÓN 2: HUB DE NOTAS -->
+      <!-- CARD 2: HUB DE NOTAS -->
       <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbwVWhVNL-FycjcULIJ6WjwKg3P0_PV5Kwl2_YWOrqWDe6rkeDqYhOhyQ9b6i8BbMbLM/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
-        <div class="btn-info">
-          <span class="btn-title">📝 Hub de Notas</span>
-          <span class="btn-desc">Acceso al sistema de gestión e historial de notas</span>
+        <div class="card-top">
+          <span class="card-icon">📝</span>
+          <span class="btn-arrow">→</span>
         </div>
-        <span class="btn-arrow">→</span>
+        <div class="card-body">
+          <span class="btn-title">Hub de Notas</span>
+          <p class="btn-desc">Acceso al sistema de gestión e historial de notas</p>
+        </div>
       </a>
 
-      <!-- BOTÓN 3: CONTROL TARIFARIO -->
+      <!-- CARD 3: CONTROL TARIFARIO -->
       <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbyVNkFQqPDNvUivKdLYLBUVsxxuSqiR1hdfwCpJsWEVZavARs4tL8H0o87il32Wxs3Y/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
-        <div class="btn-info">
-          <span class="btn-title">📊 Control Tarifario</span>
-          <span class="btn-desc">Panel de gestión y actualización de tarifas</span>
+        <div class="card-top">
+          <span class="card-icon">📊</span>
+          <span class="btn-arrow">→</span>
         </div>
-        <span class="btn-arrow">→</span>
+        <div class="card-body">
+          <span class="btn-title">Control Tarifario</span>
+          <p class="btn-desc">Panel de gestión y actualización de tarifas</p>
+        </div>
       </a>
 
-      <!-- BOTÓN 4: TARIFARIO -->
+      <!-- CARD 4: TARIFARIO -->
       <a href="https://tarifario.grandvoyage.com/" target="_blank" rel="noopener noreferrer" class="action-btn">
-        <div class="btn-info">
-          <span class="btn-title">💰 Tarifario</span>
-          <span class="btn-desc">Acceso al portal general de tarifas</span>
+        <div class="card-top">
+          <span class="card-icon">💰</span>
+          <span class="btn-arrow">→</span>
         </div>
-        <span class="btn-arrow">→</span>
+        <div class="card-body">
+          <span class="btn-title">Tarifario</span>
+          <p class="btn-desc">Acceso al portal general de tarifas</p>
+        </div>
       </a>
 
-      <!-- BOTÓN 5: GESTIÓN DE PROYECTOS -->
+      <!-- CARD 5: GESTIÓN DE PROYECTOS -->
       <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbz4DWGmxMCKx6XOc8Goa6P0PBl9Iv3XijBAmRvqjLLzecUHfCsGC9XLi85BpiuxWTm2TQ/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
-        <div class="btn-info">
-          <span class="btn-title">📂 Gestión de Proyectos</span>
-          <span class="btn-desc">Panel de planificación y seguimiento de proyectos</span>
+        <div class="card-top">
+          <span class="card-icon">📂</span>
+          <span class="btn-arrow">→</span>
         </div>
-        <span class="btn-arrow">→</span>
+        <div class="card-body">
+          <span class="btn-title">Gestión de Proyectos</span>
+          <p class="btn-desc">Panel de planificación y seguimiento de proyectos</p>
+        </div>
       </a>
     </div>
 

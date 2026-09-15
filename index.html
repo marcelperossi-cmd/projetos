@@ -124,6 +124,46 @@
       gap: 10px;
     }
 
+    /* LINHA DIVISÓRIA E CARD INFERIOR */
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 32px 0 28px 0;
+    }
+
+    .action-btn-wide {
+      min-height: auto;
+    }
+
+    @media (min-width: 641px) {
+      .action-btn-wide {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 28px;
+      }
+
+      .action-btn-wide > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+      }
+
+      .action-btn-wide .card-icon {
+        margin-bottom: 0;
+      }
+
+      .action-btn-wide .btn-title {
+        margin-bottom: 4px;
+      }
+
+      .action-btn-wide .btn-desc {
+        margin-bottom: 0;
+      }
+    }
+
     /* FOOTER DISCRETO */
     .portal-footer {
       margin-top: 40px;
@@ -141,38 +181,13 @@
   </style>
 </head>
 <body>
-
   <main class="portal-container">
     <header class="portal-header">
       <p>Seleccione una herramienta o recurso para acceder</p>
     </header>
 
     <div class="buttons-container">
-      <!-- CARD 1: MANUAL DE DESIGN -->
-      <a href="sistema-de-diseno.html" class="action-btn">
-        <div>
-          <span class="card-icon">📘</span>
-          <h2 class="btn-title">Sistema de Diseño & UX</h2>
-          <p class="btn-desc">Manual de especificaciones técnicas, dimensiones y checklist UX para la plataforma.</p>
-        </div>
-        <div class="card-action-link">
-          Acessar Manual <span>→</span>
-        </div>
-      </a>
-
-      <!-- CARD 2: HUB DE NOTAS -->
-      <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbwVWhVNL-FycjcULIJ6WjwKg3P0_PV5Kwl2_YWOrqWDe6rkeDqYhOhyQ9b6i8BbMbLM/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
-        <div>
-          <span class="card-icon">📝</span>
-          <h2 class="btn-title">Hub de Notas</h2>
-          <p class="btn-desc">Acceso al sistema de gestión, registro e historial de notas.</p>
-        </div>
-        <div class="card-action-link">
-          Acessar App <span>→</span>
-        </div>
-      </a>
-
-      <!-- CARD 3: CONTROL TARIFARIO -->
+      <!-- 1. CONTROL TARIFARIO -->
       <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbyVNkFQqPDNvUivKdLYLBUVsxxuSqiR1hdfwCpJsWEVZavARs4tL8H0o87il32Wxs3Y/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
         <div>
           <span class="card-icon">📊</span>
@@ -184,24 +199,55 @@
         </div>
       </a>
 
-      <!-- CARD 4: TARIFARIO -->
+      <!-- 2. GESTOR DE APPS -->
+      <a href="https://tinyurl.com/GV-Apps" target="_blank" rel="noopener noreferrer" class="action-btn">
+        <div>
+          <span class="card-icon">📱</span>
+          <h2 class="btn-title">Gestor de Apps</h2>
+          <p class="btn-desc">Panel de administración, control y acceso centralizado de aplicaciones.</p>
+        </div>
+        <div class="card-action-link">
+          Acessar App <span>→</span>
+        </div>
+      </a>
+
+      <!-- 3. NOTAS DE VIAJES -->
+      <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbwVWhVNL-FycjcULIJ6WjwKg3P0_PV5Kwl2_YWOrqWDe6rkeDqYhOhyQ9b6i8BbMbLM/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
+        <div>
+          <span class="card-icon">📝</span>
+          <h2 class="btn-title">Notas de Viajes</h2>
+          <p class="btn-desc">Acceso al sistema de gestión, registro e historial de notas.</p>
+        </div>
+        <div class="card-action-link">
+          Acessar App <span>→</span>
+        </div>
+      </a>
+
+      <!-- 4. PRESUPUESTADOR -->
       <a href="https://tarifario.grandvoyage.com/" target="_blank" rel="noopener noreferrer" class="action-btn">
         <div>
           <span class="card-icon">💰</span>
-          <h2 class="btn-title">Tarifario General</h2>
+          <h2 class="btn-title">Presupuestador</h2>
           <p class="btn-desc">Acceso al portal general de tarifas y consulta de precios.</p>
         </div>
         <div class="card-action-link">
           Acessar Portal <span>→</span>
         </div>
       </a>
+    </div>
 
-      <!-- CARD 5: GESTIÓN DE PROYECTOS -->
-      <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbz4DWGmxMCKx6XOc8Goa6P0PBl9Iv3XijBAmRvqjLLzecUHfCsGC9XLi85BpiuxWTm2TQ/exec" target="_blank" rel="noopener noreferrer" class="action-btn">
+    <!-- LINHA DIVISÓRIA -->
+    <hr class="section-divider">
+
+    <!-- 5. GESTIÓN DE PROYECTOS (SEPARADO) -->
+    <div class="bottom-container">
+      <a href="https://script.google.com/a/macros/grandvoyage.com/s/AKfycbz4DWGmxMCKx6XOc8Goa6P0PBl9Iv3XijBAmRvqjLLzecUHfCsGC9XLi85BpiuxWTm2TQ/exec" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-wide">
         <div>
           <span class="card-icon">📂</span>
-          <h2 class="btn-title">Gestión de Proyectos</h2>
-          <p class="btn-desc">Panel de planificación, tareas y seguimiento de proyectos.</p>
+          <div>
+            <h2 class="btn-title">Gestión de Proyectos</h2>
+            <p class="btn-desc">Panel de planificación, tareas y seguimiento de proyectos.</p>
+          </div>
         </div>
         <div class="card-action-link">
           Acessar App <span>→</span>
